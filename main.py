@@ -1,4 +1,5 @@
 import turtle
+import random
 
 class Circuito():
     corredores = []
@@ -14,7 +15,9 @@ class Circuito():
         self.__finishLine= width/2 -(width*5/100)
         
         self.createRunners()
-    
+        
+        
+        
     def createRunners(self):
         
         for i in range (4):
@@ -28,8 +31,20 @@ class Circuito():
         
       
         
+    def competir(self):
+        hayGanador= False
         
-        
+        while not hayGanador:
+            for tortuga in self.corredores:
+            
+                nuevapos= random.randint(1,6)
+                tortuga.fd(nuevapos)
+                if tortuga.xcor()>=self.__finishLine:
+                    hayGanador=True
+                    color = tortuga.fillcolor()
+                    print("La tortuga ganadora es la {}".format(color))
+                    break
         
 if __name__ == '__main__':
     circuito= Circuito(640,480)
+    circuito.competir()
